@@ -5,7 +5,7 @@ import HeartIconWrapper from "../components/icons/heartIconWrapper";
 
 const Home = () => {
   const { products, isLoading, error } = useFetchProducts();
-  console.log("Fetched Products", products);
+  //console.log("Fetched Products", products);
 
   if (isLoading) {
     return <div className="text-center py-10">Loading Data...</div>;

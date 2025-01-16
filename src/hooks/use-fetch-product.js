@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import axios from "axios";
 
 export const useFetchProduct = () => {
   const { id } = useParams();
@@ -8,16 +9,27 @@ export const useFetchProduct = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch(`https://dummyjson.com/products/${id}`, {
-      method: "GET",
-    })
-      .then((fetchResult) => {
-        if (fetchResult.ok) return fetchResult.json();
-        throw new Error("Failed to fetch data");
-      })
-      .then((jsonData) => setProduct(jsonData))
-      .catch((err) => setError(err))
-      .finally(() => setIsLoading(false));
-  }, []);
+
+    const fetchProduct = async () => {
+
+      try {
+
+        const response = await axios.get(`https://dummyjson.com/products/${id}`);
+        console.log("Response from Axios for fetching a Single Product", response.data);
+        setProduct(response.data);
+      } catch (err) {
+        setError(err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchProduct();
+
+
+  }, [id]);
   return { product, isLoading, error };
 };
+
+
+

@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export const useFetchProducts = () => {
   const [products, setProducts] = useState([]);
@@ -7,16 +7,20 @@ export const useFetchProducts = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("https://dummyjson.com/products", {
-      method: "GET",
-    })
-      .then((fetchResult) => {
-        if (fetchResult.ok) return fetchResult.json();
-        throw new Error("Failed to fetch data");
-      })
-      .then((jsonData) => setProducts(jsonData.products))
-      .catch((err) => setError(err))
-      .finally(() => setIsLoading(false));
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get("https://dummyjson.com/products");
+        console.log("response from Axios API", response.data);
+        setProducts(response.data.products); // Access the `products` array from the API response
+      } catch (err) {
+        setError(err); // Set the error if the request fails
+      } finally {
+        setIsLoading(false); // Ensure loading is false after the request completes
+      }
+    };
+
+    fetchProducts();
   }, []);
+
   return { products, isLoading, error };
 };

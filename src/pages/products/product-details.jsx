@@ -51,7 +51,7 @@ function ProductDetailsPage() {
         <img
           src={product.thumbnail}
           alt={product.title}
-          className="rounded shadow-md w-full h-[460px] aspect-square object-cover"
+          className="rounded border-2 shadow-md w-full h-[460px] aspect-square object-contain"
         />
         <div className="flex gap-4 items-center">
           <button
