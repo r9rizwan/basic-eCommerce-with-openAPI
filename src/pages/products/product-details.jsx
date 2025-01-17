@@ -1,28 +1,20 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useFetchProduct } from "../../hooks";
-import { addToCard, removeFromCart } from "../../store/slices/cart-slice";
-import { useSelector } from "react-redux";
-
-export const ColorBadge = ({ color = "bg-primary" }) => {
-  return <div className={`size-5 rounded-full ${color}`} role="button" />;
-};
-
-export const SizeBadge = ({ size }) => {
-  return (
-    <div
-      className="size-11 rounded-full bg-gray-200 flex justify-center items-center font-semibold hover:bg-gray-300 transition"
-      role="button">
-      {size}
-    </div>
-  );
-};
+import { addToCart, removeFromCart } from "../../store/slices/cart-slice";
+import { addItem, removeItem } from "../../store/slices/wishlistSlice";
+import { ColorBadge } from "../../components/icons/colours";
+import { SizeBadge } from "../../components/sizeBadge";
 
 function ProductDetailsPage() {
   const { product, isLoading, error } = useFetchProduct();
   const { cart } = useSelector((store) => store.cart);
+  const { wishlist } = useSelector((state) => state.wishlist); // Get wishlist from Redux
   const dispatch = useDispatch();
 
   const isWithinCart = cart.find((item) => item.id === product.id);
+  const isInWishlist = wishlist.find(
+    (wishlistItem) => wishlistItem.id === product.id
+  ); // Check if the product is in wishlist
 
   if (isLoading) {
     return <div className="text-center py-10">Loading Data...</div>;
@@ -38,10 +30,19 @@ function ProductDetailsPage() {
 
   const addProductToCart = () => {
     if (isWithinCart) {
-      // remove from cart.
+      console.log("Removing item:", product.id);
       dispatch(removeFromCart({ id: product.id }));
     } else {
-      dispatch(addToCard(product));
+      console.log("Adding item:", product.id);
+      dispatch(addToCart({ ...product, quantity: 1 }));
+    }
+  };
+
+  const toggleWishlist = () => {
+    if (isInWishlist) {
+      dispatch(removeItem({ id: product.id })); // Remove from wishlist
+    } else {
+      dispatch(addItem(product)); // Add to wishlist
     }
   };
 
@@ -59,8 +60,11 @@ function ProductDetailsPage() {
             className="font-semibold h-10 w-full border px-3 rounded-full block bg-foreground hover:bg-foreground/80 transition text-background">
             {isWithinCart ? "Remove from cart" : "Add to Cart"}
           </button>
-          <button className="font-semibold h-10 w-full border px-3 bg-gray-200 transition hover:bg-gray-300 rounded-full block">
-            Add to Wishlist
+          {/* Add to wishlist button */}
+          <button
+            onClick={toggleWishlist}
+            className="font-semibold h-10 w-full border px-3 bg-gray-200 transition hover:bg-gray-300 rounded-full block">
+            {isInWishlist ? "Item is in Wishlist" : "Add to Wishlist"}
           </button>
         </div>
       </div>
@@ -69,7 +73,7 @@ function ProductDetailsPage() {
         <p className="text-muted-foreground">{product.description}</p>
         <div className="flex items-center gap-5">
           <h6 className="font-semibold">
-            Price: <span className="ms-0.5 font-normal">${product.price}</span>
+            Price: <span className="ms-0.5 font-normal">£{product.price}</span>
           </h6>
           <h6 className="font-semibold">
             Availability:{" "}
@@ -81,10 +85,10 @@ function ProductDetailsPage() {
         <div className="flex flex-col gap-2">
           <h6 className="font-semibold">Select Color: </h6>
           <div className="flex gap-2 items-center">
-            <ColorBadge color="bg-foreground" />
-            <ColorBadge color="bg-danger" />
-            <ColorBadge />
-            <ColorBadge color="bg-warning" />
+            <ColorBadge color="bg-red-500" />
+            <ColorBadge color="bg-green-500" />
+            <ColorBadge color="bg-blue-600" />
+            <ColorBadge color="bg-yellow-500" />
           </div>
         </div>
         <div className="flex flex-col gap-2">
@@ -107,13 +111,3 @@ function ProductDetailsPage() {
 }
 
 export default ProductDetailsPage;
-
-// 1. get by id general steps
-// 2. pass the unique identifier in the routes / url
-// 3. make the route a dynamic route segment by adding : before route name (eg., :id, :product, :lang, :mode)
-// 4. access the dynamic route segment by using react-router-dom hook called useParams. make sure the
-//    access key must be same as the name of dynamic route segment.
-// 5. fetch data in useEffect by sending the identifier to server with path/ route.
-// 6. set the received data to state for further use.
-// 7. render the data on appropriate places in the UI.
-// 8. (optional) sometimes we have to adjust the received data according to our ui requirement.

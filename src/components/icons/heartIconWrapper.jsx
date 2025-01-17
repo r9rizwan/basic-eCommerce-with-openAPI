@@ -11,32 +11,6 @@ const HeartIconWrapper = ({ item }) => {
     (wishlistItem) => wishlistItem.id === item.id
   );
 
-  // const [isFilled, setIsFilled] = useState(isInWishlist);
-
-  // const handleClick = () => {
-  //   if (isFilled) {
-  //     dispatch(removeItem(item));
-  //   } else {
-  //     dispatch(addItem(item));
-  //   }
-  //   setIsFilled(!isFilled);
-  // };
-
-  // return (
-  //   <div
-  //     onClick={handleClick}
-  //     className={`cursor-pointer transition-transform duration-200 ${
-  //       isFilled ? "text-red-500" : "text-gray-500"
-  //     } ${isFilled ? "scale-110" : ""}`}
-  //   >
-  //     <Heart />
-  //   </div>
-  // );
-
-  // const [isFilled, setIsFilled] = useState("");
-  // const toggleFilled = () =>
-  // isFilled ? setIsFilled("") : setIsFilled("fill-red-500 scale-125");
-
   const addToWishlist = () => {
     if (isInWishlist) dispatch(removeItem({ id: item.id }));
     // dispatch to redux an action for pushing an item to wishlist.
@@ -54,7 +28,5 @@ const HeartIconWrapper = ({ item }) => {
     </span>
   );
 };
-
-// const name = "Mubeen"`My name is ${name}`;
 
 export default HeartIconWrapper;
