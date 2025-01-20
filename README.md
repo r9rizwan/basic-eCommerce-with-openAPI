@@ -77,7 +77,6 @@ The application simulates an online store by fetching data from an open API sour
 
 ## File Structure
 
-.
 ├── public
 │ ├── images
 │ │ ├── hero-banner.jpg
@@ -120,22 +119,22 @@ The application simulates an online store by fetching data from an open API sour
 
 npm install
 
-# Running the Application
+## Running the Application
 
-# Start the development server:
+### Start the development server:
 
 npm run dev
 
-# Open the app in your browser:
+### Open the app in your browser:
 
 http://localhost:5173
 
-# Building for Production
+### Building for Production
 
-# Create a production build:
+### Create a production build:
 
 npm run build
 
-# Serve the build:
+### Serve the build:
 
 npm run preview
