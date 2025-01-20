@@ -77,22 +77,23 @@ The application simulates an online store by fetching data from an open API sour
 
 ## File Structure
 
+.
 ├── public
-│ ├── images
-│ │ ├── hero-banner.jpg
-│ │ └── product images...
-│ └── vite.svg
+│   ├── images
+│   │   ├── hero-banner.jpg
+│   │   └── product images...
+│   └── vite.svg
 ├── src
-│ ├── components
-│ │ ├── UI
-│ │ └── icons
-│ ├── hooks
-│ ├── layouts
-│ ├── pages
-│ ├── routes
-│ ├── store
-│ │ └── slices
-│ └── assets
+│   ├── components
+│   │   ├── UI
+│   │   └── icons
+│   ├── hooks
+│   ├── layouts
+│   ├── pages
+│   ├── routes
+│   ├── store
+│   │   └── slices
+│   └── assets
 ├── package.json
 ├── tailwind.config.js
 └── vite.config.js
