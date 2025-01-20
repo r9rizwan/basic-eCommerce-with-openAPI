@@ -1,5 +1,6 @@
 import React from "react";
-import { Card, HeroSection } from "../components";
+import { Card } from "../components/UI";
+import HeroSection from "./hero-section";
 import { useFetchProducts } from "../hooks";
 import HeartIconWrapper from "../components/icons/heartIconWrapper";
 

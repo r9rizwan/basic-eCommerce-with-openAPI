@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
-import { Logo, DisplayPicture } from "../components";
+import { Logo, DisplayPicture } from "../components/UI";
 import { Trolley, Heart, Message } from "../components/icons";
 import { TrolleyWrapper } from "../components/icons/trolleyiconWrapper";
 

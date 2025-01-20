@@ -3,7 +3,7 @@ import { useFetchProduct } from "../../hooks";
 import { addToCart, removeFromCart } from "../../store/slices/cart-slice";
 import { addItem, removeItem } from "../../store/slices/wishlistSlice";
 import { ColorBadge } from "../../components/icons/colours";
-import { SizeBadge } from "../../components/sizeBadge";
+import { SizeBadge } from "../../components/UI/sizeBadge";
 
 function ProductDetailsPage() {
   const { product, isLoading, error } = useFetchProduct();

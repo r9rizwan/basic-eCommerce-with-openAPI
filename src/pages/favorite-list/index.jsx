@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Card } from "../../components";
+import { Card } from "../../components/UI";
 import HeartIconWrapper from "../../components/icons/heartIconWrapper";
 import { resetNewCount } from "../../store/slices/wishlistSlice";
 

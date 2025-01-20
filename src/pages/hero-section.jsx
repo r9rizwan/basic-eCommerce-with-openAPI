@@ -1,7 +1,7 @@
 import React from "react";
-import { Button } from "./button";
+import { Button } from "../components/UI/button";
 
-export const HeroSection = () => {
+const HeroSection = () => {
   return (
     <div
       className="text-background bg-foreground/15 bg-[url('/images/hero-banner.jpg')] bg-blend-overlay h-[500px] w-full bg-[center_59%] bg-cover bg-no-repeat"
@@ -21,8 +21,8 @@ export const HeroSection = () => {
         </h1>
         <span>Light breathable blouse for any condition</span>
         <div className="flex gap-2 items-end">
-          <h3 className="text-2xl font-bold">$82,61</h3>
-          <s>$153,92</s>
+          <h3 className="text-2xl font-bold">£22.99</h3>
+          <s>£35.99</s>
         </div>
         <div>
           <Button>View More</Button>
@@ -31,3 +31,5 @@ export const HeroSection = () => {
     </div>
   );
 };
+
+export default HeroSection;
